@@ -1,0 +1,30 @@
+Wealthy,Charisma,Wisdom,Strength,Heavy,Chest,Heavy,Head,Heavy,Legs,Heavy,Arms,Heavy,Feet,Sword,Sword
+Barbaric,Strength,Dexterity,Charisma,Medium,Chest,Light,Head,Medium,Legs,Medium,Arms,Medium,Feet,Axe,Axe
+Rebel,Perception,Charisma,Luck,Medium,Chest,Medium,Head,Medium,Legs,Light,Arms,Light,Feet,Crossbow,null
+Ranger,Perception,Dexterity,Vitality,Medium,Chest,Light,Head,Light,Legs,Light,Arms,Light,Feet,Bow,null
+Scout,Agility,Perception,Vitality,Light,Chest,Light,Head,Light,Legs,Light,Arms,Light,Feet,Dagger,Dagger
+Scholar,Intelligence,Wisdom,Endurance,Light,Chest,Light,Head,Light,Legs,Light,Arms,Light,Feet,Staff,null
+Wanderer,Vitality,Agility,Wisdom,Medium,Chest,Light,Head,Medium,Legs,Light,Arms,Medium,Feet,Spear,null
+Explorer,Endurance,Luck,Intelligence,Medium,Chest,Medium,Head,Medium,Legs,Light,Arms,Medium,Feet,Bow,null
+Loner,Dexterity,Vitality,Charisma,Medium,Chest,Light,Head,Medium,Legs,Light,Arms,Medium,Feet,Sword,null
+Thief,Luck,Agility,Strength,Medium,Chest,Light,Head,Light,Legs,Light,Arms,Light,Feet,Dagger,Dagger
+Assassin,Dexterity,Luck,Vitality,Medium,Chest,Light,Head,Medium,Legs,Light,Arms,Light,Feet,Dagger,null
+Soldier,Endurance,Strength,Wisdom,Heavy,Chest,Medium,Head,Medium,Legs,Heavy,Arms,Heavy,Feet,Shortspear,Shield
+Bard,Charisma,Intelligence,Strength,Light,Chest,Light,Head,Medium,Legs,Light,Arms,Medium,Feet,Staff,null
+Blacksmith,Strength,Endurance,Agility,Medium,Chest,Heavy,Head,Medium,Legs,Heavy,Arms,Heavy,Feet,Mace,null
+Carpenter,Endurance,Intelligence,Charisma,Medium,Chest,Medium,Head,Medium,Legs,Light,Arms,Medium,Feet,Great Axe,null
+Clothier,Dexterity,Wisdom,Endurance,Light,Chest,Light,Head,Light,Legs,Light,Arms,Light,Feet,Shortspear,null
+Merchant,Charisma,Luck,Dexterity,Light,Chest,Light,Head,Light,Legs,Light,Arms,Light,Feet,Dagger,null
+Spy,Intelligence,Perception,Wisdom,Medium,Chest,Light,Head,Light,Legs,Light,Arms,Light,Feet,Dagger,null
+Religious,Wisdom,Endurance,Perception,Light,Chest,Light,Head,Light,Legs,Heavy,Arms,Heavy,Feet,Spear,null
+Survivor,Luck,Vitality,Endurance,Medium,Chest,Light,Head,Medium,Legs,Heavy,Arms,Medium,Feet,Crossbow,null
+Acrobat,Agility,Strength,Intelligence,Light,Chest,Light,Head,Light,Legs,Light,Arms,Light,Feet,Sword,Sword
+Monk,Wisdom,Agility,Luck,Light,Chest,Light,Head,Light,Legs,Light,Arms,Light,Feet,Staff,null
+Commander,Strength,Charisma,Agility,Heavy,Chest,Heavy,Head,Heavy,Legs,Heavy,Arms,Heavy,Feet,Greatsword,null
+Strategist,Intelligence,Perception,Dexterity,Heavy,Chest,Light,Head,Heavy,Legs,Light,Arms,Heavy,Feet,Crossbow,null
+Flag-Bearer,Vitality,Endurance,Luck,Heavy,Chest,Heavy,Head,Heavy,Legs,Heavy,Arms,Heavy,Feet,Great Axe,null
+Farmer,Vitality,Strength,Perception,Light,Chest,Medium,Head,Light,Legs,Light,Arms,Light,Feet,Spear,null
+Guard,Perception,Vitality,Intelligence,Heavy,Chest,Heavy,Head,Heavy,Legs,Heavy,Arms,Heavy,Feet,Sword,Shield
+Priest,Wisdom,Charisma,Agility,Heavy,Chest,Light,Head,Heavy,Legs,Light,Arms,Light,Feet,Warhammer,null
+Rogue,Agility,Dexterity,Perception,Medium,Chest,Medium,Head,Medium,Legs,Light,Arms,Light,Feet,Axe,null
+Researcher,Luck,Intelligence,Dexterity,Light,Chest,Light,Head,Light,Legs,Light,Arms,Light,Feet,Staff,null

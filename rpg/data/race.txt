@@ -1,0 +1,10 @@
+Gox,Vitality,Intelligence,Endurance,Agility,Dexterity
+Valdar,Strength,Dexterity,Vitality,Charisma,Intelligence
+Eona,Intelligence,Charisma,Perception,Luck,Strength
+Kroll,Agility,Endurance,Wisdom,Vitality,Charisma
+Surmeli,Luck,Agility,Dexterity,Strength,Vitality
+Zem,Dexterity,Wisdom,Strength,Perception,Luck
+Criffon,Wisdom,Perception,Agility,Intelligence,Endurance
+Eldrizi,Endurance,Vitality,Charisma,Dexterity,Perception
+Elassi,Charisma,Luck,Intelligence,Endurance,Wisdom
+Clovis,Perception,Luck,Strength,Wisdom,Agility

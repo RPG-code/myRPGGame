@@ -1,0 +1,15 @@
+Blacksmith,6,4,12,6
+Merchant Shop,4,2,6,2
+Guard Room,4,2,0,0
+Armory,6,8,10,4
+Barracks,4,0,0,0
+Council Room,0,0,8,4
+Stairs Down,0,0,0,0
+Stairs Up,0,0,0,0
+Hallway,0,0,0,0
+Inn,0,0,1,0
+Throne Room,0,0,20,10
+Kitchen,0,0,0,0
+House,1,0,1,0
+Entrance Hall,0,0,20,10
+Training Room,0,8,12,6
