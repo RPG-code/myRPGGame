@@ -1,0 +1,23 @@
+# go to folder /programming/RPG_shadowMole
+
+# here is the directory tree
+RPG_shadowmole
+ |-bin
+ |---rpg
+ |-rpg
+ `---data
+
+> dir
+bin
+README.md
+rpg
+
+# to compile: (from one folder above rpg) run this:
+javac -d bin rpg/Game.java
+
+#	all class files are put in ./bin
+
+# to run the game: (classpath is bin)
+java -cp bin rpg/Game
+
+
