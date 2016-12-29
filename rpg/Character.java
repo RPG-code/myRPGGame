@@ -1,6 +1,7 @@
 package rpg;
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * Write a description of class Character here.
@@ -8,7 +9,7 @@ import java.util.Scanner;
  * @author mrh2 
  * @version 2.0
  */
-public class Character
+class Character
 {
     private int strength;
     private int dexterity;
@@ -125,18 +126,37 @@ public class Character
             tempStory = sc.nextLine();
         }
         story = new Background(filereader.storyReader(tempStory));
-        System.out.println("The possible magics of this world are: \n Fire \n Water \n Earth \n Air \n Lightning \n Shadow \n Healing \n Summoning \n Illusion");
-        System.out.println("What is " + name + "'s primary magic?");
-        String tempFirst = sc.nextLine();
-        while((tempFirst.equals("Fire") || tempFirst.equals("Water") || tempFirst.equals("Earth") || tempFirst.equals("Air") || tempFirst.equals("Lightning") || tempFirst.equals("Shadow") || tempFirst.equals("Healing") || tempFirst.equals("Summoning") || tempFirst.equals("Illusion")) == false){
+        
+        ArrayList<String> tempArray = filereader.getMagicData();
+        System.out.println("\nThe possible magics of this world are:");
+        for (int i=0; i < tempArray.size(); i++) {
+        	String s = tempArray.get(i);
+        	System.out.println((i+1) + ". " + s.substring(0, s.indexOf(',')) );
+        }
+        
+        //System.out.println("The possible magics of this world are: \n Fire \n Water \n Earth \n Air \n Lightning \n Shadow \n Healing \n Summoning \n Illusion");
+        
+        //TODO: allow for a number to be entered.
+        System.out.println("What is " + name + "'s primary magic? (enter number)");
+//      String tempFirst = sc.nextLine();
+//      while((tempFirst.equals("Fire") || tempFirst.equals("Water") || tempFirst.equals("Earth") || tempFirst.equals("Air") || tempFirst.equals("Lightning") || tempFirst.equals("Shadow") || tempFirst.equals("Healing") || tempFirst.equals("Summoning") || tempFirst.equals("Illusion")) == false){
+        int answer = sc.nextInt();
+        while (answer < 1 || answer > tempArray.size()) {
             System.out.println("That is not one of the possible magics");
             System.out.println("Please pick a magic.");
-            tempFirst = sc.nextLine();
+            //tempFirst = sc.nextLine();
+            answer = sc.nextInt();
         }
-        primaryMagic = new Magic(filereader.firstMagicReader(tempFirst));
+        //primaryMagic = new Magic(filereader.firstMagicReader(tempFirst));
+        String magicType = tempArray.get(answer-1);
+        magicType = magicType.substring(0, magicType.indexOf(','));
+        primaryMagic = new Magic(filereader.firstMagicReader(magicType));
+        
+        
         System.out.println("What is " + name + "'s secondary magic?");
+        
         String tempSecond = sc.nextLine();
-        while(((tempSecond.equals("Fire") || tempSecond.equals("Water") || tempSecond.equals("Earth") || tempSecond.equals("Air") || tempSecond.equals("Lightning") || tempSecond.equals("Shadow") || tempSecond.equals("Healing") || tempSecond.equals("Summoning") || tempSecond.equals("Illusion")) && tempSecond.equals(tempFirst) == false) == false){
+        while(((tempSecond.equals("Fire") || tempSecond.equals("Water") || tempSecond.equals("Earth") || tempSecond.equals("Air") || tempSecond.equals("Lightning") || tempSecond.equals("Shadow") || tempSecond.equals("Healing") || tempSecond.equals("Summoning") || tempSecond.equals("Illusion")) && tempSecond.equals(magicType) == false) == false){
             System.out.println("That is not a possible secondary magic");
             System.out.println("Please pick a magic.");
             tempSecond = sc.nextLine();

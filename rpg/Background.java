@@ -7,7 +7,7 @@ package rpg;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Background
+class Background
 {
     private String story;
     private String primaryBuff;
@@ -20,7 +20,8 @@ public class Background
     private Armor feet;
     private Weapon weapon1;
     private Weapon weapon2;
-    public Background(String[] life)
+
+	Background(String[] life)
     {
         story = life[0];
         primaryBuff = life[1];

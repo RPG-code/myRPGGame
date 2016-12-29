@@ -7,7 +7,7 @@ package rpg;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Magic
+class Magic
 {
     private String type;
     private double offensive;
@@ -16,7 +16,8 @@ public class Magic
     private double control;
     private double support;
     private double speed;
-    public Magic(String[] magic){
+    
+    Magic(String[] magic){
         type = magic[0];
         offensive = Double.parseDouble(magic[1]);
         defensive = Double.parseDouble(magic[2]);
@@ -26,7 +27,7 @@ public class Magic
         speed = Double.parseDouble(magic[6]);
     }
 
-    public Magic(Magic first, Magic second){
+    Magic(Magic first, Magic second){
         type = first.getType() + " " + second.getType();
         offensive = first.getOffense() + second.getOffense() / 2;
         defensive = first.getDefense() + second.getDefense() / 2;
@@ -36,31 +37,31 @@ public class Magic
         speed = first.getSpeed() + second.getSpeed() / 2;
     }
 
-    public String getType(){
+    String getType(){
         return type;
     }
 
-    public double getOffense(){
+    double getOffense(){
         return offensive;
     }
 
-    public double getDefense(){
+    double getDefense(){
         return defensive;
     }
 
-    public double getMobile(){
+    double getMobile(){
         return mobility;
     }
 
-    public double getControl(){
+    double getControl(){
         return control;
     }
 
-    public double getSupport(){
+    double getSupport(){
         return support;
     }
 
-    public double getSpeed(){
+    double getSpeed(){
         return speed;
     }
 }
