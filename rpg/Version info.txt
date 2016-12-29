@@ -1,7 +1,0 @@
-Version 2.0 -- Source code from ShadowMole. First edits and reorganization by salamander2
-
-Fixes: 	remove all public modifiers (in progress still)
-		change FileRead to get rid of repeating code when reading files
-		move data files into data folder
-		begin to use a global constants file
-

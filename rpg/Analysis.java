@@ -1,5 +1,3 @@
-package rpg;
-
 import java.util.ArrayList;
 public class Analysis{
     private Map study;

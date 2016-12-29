@@ -1,21 +1,17 @@
-package rpg;
-
 import java.util.ArrayList;
-
-import static rpg.RPGconstants.*;
-
-class Team{
+import java.util.Scanner;
+public class Team{
     private ArrayList<Character> players;
-    Team(){
+    public Team(){
         players = new ArrayList<>();
-        for(int i = 0;i < NUM_PLAYERS;i++){
+        for(int i = 0;i < 4;i++){
             System.out.print("Please create player " + (i + 1) + "\n");
             players.add(new Character());
         }
     }
 
-    void printTeamInfo(){
-        for(int i = 0;i < NUM_PLAYERS;i++){
+    public void printTeamInfo(){
+        for(int i = 0;i < 4;i++){
             players.get(i).printInfo();
             System.out.println("");
         }

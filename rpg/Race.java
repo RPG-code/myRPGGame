@@ -1,5 +1,3 @@
-package rpg;
-
 
 /**
  * Write a description of class Race here.
@@ -15,7 +13,6 @@ public class Race
     private String tertiaryBuff;
     private String primaryDeBuff;
     private String secondaryDeBuff;
-    
     public Race(String[] species)
     {
         race = species[0];

@@ -1,5 +1,3 @@
-package rpg;
-
 
 /**
  * Write a description of class Battle here.

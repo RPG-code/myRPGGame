@@ -1,15 +1,12 @@
-package rpg;
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * Write a description of class Character here.
  * 
- * @author mrh2 
- * @version 2.0
+ * @author (your name) 
+ * @version (a version number or a date)
  */
-class Character
+public class Character
 {
     private int strength;
     private int dexterity;
@@ -102,13 +99,7 @@ class Character
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the name of this character?");
         name = sc.nextLine();
-        //TODO: put this long text into a text file.
-        System.out.println("The races of this world are: \n Gox: A race of turtle-like peoples.  "
-        		+ "They can be found living in either \n small rural communities along the southern coast lines.  "
-        		+ "However, many tend \n to move away to the cities in order to pursue research at universities.  \n "
-        		+ "They can also be found wandering the wilds in search of ruins to explore.  \n "
-        		+ "They are long lived, but not very agile.  \n"
-        		+ " +30% Vitality, +20% Intelligence, +10% Endurance, -20% Agility, -10% Dexterity \n \n Valdar: A race of horned, mammalian people.  They are extremely powerful and \n large in stature. They mostly live in large clans in the southern plains and \n in the shadows of the volcanos in that region.  Their clans are always at war \n as combat prowess is viewed with respect in their society.  \n +30% Strength, +20% Dexterity, +10% Vitality, -20% Charsima, -10% Intelligence \n \n Eona: A race of refined human-like people.  Their hair is often brightly colored.  \n They are mostly city dwelling people who are intelligent and charismatic.  Many \n are merchants or scholars.  They hate to leave things to luck.  \n +30% Intelligence, +20% Charisma, +10 Perception, -20% Luck, -10% Strength \n \n Kroll: A race of nomadic cat-like people.  They can be found throughout the world \n as they travel.  They have a few permanent settlements in the forests of the world.  \n They are not always trusted by others.  They are also very agile.  \n +30% Agility, +20% Endurance, +10% Wisdom, -20% Vitality, -10% Charisma \n \n Surmeli: A humanoid race of small stature.  They are quick, but weak.  They are \n known for somehow getting out of tough situations.  They have villages in forests \n and the hillier regions of the world.  \n +30% Luck, +20% Agility, +10% Dexterity, -20% Strength, -10% Vitality \n \n Zem: A race of lizard-like people who mainly dwell in the mountains.  They \n are a warrior race who looks to the gods for wisdom.  Many become mercenaries \n for foreign armies.  \n +30% Dexterity, +20% Wisdom, +10% Strength, -20% Perception, -10% Luck \n \n Criffon: A race of barbaric humanoids who dwell on the plains of the world.  \n They often shurk modern education for the wisdom of their gods.  They live in \n small hunter-gatherer villages.  \n +30% Wisdom, +20% Perception, +10% Agility, -20% Intelligence, -10% Endurance \n \n Eldrizi: A race of large humanoids from the north.  They have incredible endurance.  \n They mostly live in cities in order to guard from the elements.  \n +30% Endurance, +20% Vitality, +10% Charisma, -20% Dexterity, -10% Perception \n \n Elassi: They are an elven race who often are found in cities of other races.  \n They are great merchants.  They have founded cities along the trade routes of the \n world.  \n +30% Charisma, +20% Luck, +10% Intelligence, -20% Endurance, -10% Wisdom \n \n Clovis: A race of humans who have developed extraordinary perception in response \n to the harsh desert wilderness.  They live in walled cities for protection.  \n +30% Perception, +20% Strength, +10% Luck, -20% Wisdom, -10% Agility \n \n");
+        System.out.println("The races of this world are: \n Gox: A race of turtle-like peoples.  They can be found living in either \n small rural communities along the southern coast lines.  However, many tend \n to move away to the cities in order to pursue research at universities.  \n They can also be found wandering the wilds in search of ruins to explore.  \n They are long lived, but not very agile.  \n +30% Vitality, +20% Intelligence, +10% Endurance, -20% Agility, -10% Dexterity \n \n Valdar: A race of horned, mammalian people.  They are extremely powerful and \n large in stature. They mostly live in large clans in the southern plains and \n in the shadows of the volcanos in that region.  Their clans are always at war \n as combat prowess is viewed with respect in their society.  \n +30% Strength, +20% Dexterity, +10% Vitality, -20% Charsima, -10% Intelligence \n \n Eona: A race of refined human-like people.  Their hair is often brightly colored.  \n They are mostly city dwelling people who are intelligent and charismatic.  Many \n are merchants or scholars.  They hate to leave things to luck.  \n +30% Intelligence, +20% Charisma, +10 Perception, -20% Luck, -10% Strength \n \n Kroll: A race of nomadic cat-like people.  They can be found throughout the world \n as they travel.  They have a few permanent settlements in the forests of the world.  \n They are not always trusted by others.  They are also very agile.  \n +30% Agility, +20% Endurance, +10% Wisdom, -20% Vitality, -10% Charisma \n \n Surmeli: A humanoid race of small stature.  They are quick, but weak.  They are \n known for somehow getting out of tough situations.  They have villages in forests \n and the hillier regions of the world.  \n +30% Luck, +20% Agility, +10% Dexterity, -20% Strength, -10% Vitality \n \n Zem: A race of lizard-like people who mainly dwell in the mountains.  They \n are a warrior race who looks to the gods for wisdom.  Many become mercenaries \n for foreign armies.  \n +30% Dexterity, +20% Wisdom, +10% Strength, -20% Perception, -10% Luck \n \n Criffon: A race of barbaric humanoids who dwell on the plains of the world.  \n They often shurk modern education for the wisdom of their gods.  They live in \n small hunter-gatherer villages.  \n +30% Wisdom, +20% Perception, +10% Agility, -20% Intelligence, -10% Endurance \n \n Eldrizi: A race of large humanoids from the north.  They have incredible endurance.  \n They mostly live in cities in order to guard from the elements.  \n +30% Endurance, +20% Vitality, +10% Charisma, -20% Dexterity, -10% Perception \n \n Elassi: They are an elven race who often are found in cities of other races.  \n They are great merchants.  They have founded cities along the trade routes of the \n world.  \n +30% Charisma, +20% Luck, +10% Intelligence, -20% Endurance, -10% Wisdom \n \n Clovis: A race of humans who have developed extraordinary perception in response \n to the harsh desert wilderness.  They live in walled cities for protection.  \n +30% Perception, +20% Strength, +10% Luck, -20% Wisdom, -10% Agility \n \n");
         System.out.println("What is " + name + "'s race?");
         String tempRace = sc.nextLine();
         while((tempRace.equals("Gox") || tempRace.equals("Valdar") || tempRace.equals("Eona") || tempRace.equals("Kroll") || tempRace.equals("Surmeli") || tempRace.equals("Eldrizi") || tempRace.equals("Criffon") || tempRace.equals("Elassi") || tempRace.equals("Clovis") || tempRace.equals("Zem")) == false){
@@ -126,37 +117,18 @@ class Character
             tempStory = sc.nextLine();
         }
         story = new Background(filereader.storyReader(tempStory));
-        
-        ArrayList<String> tempArray = filereader.getMagicData();
-        System.out.println("\nThe possible magics of this world are:");
-        for (int i=0; i < tempArray.size(); i++) {
-        	String s = tempArray.get(i);
-        	System.out.println((i+1) + ". " + s.substring(0, s.indexOf(',')) );
-        }
-        
-        //System.out.println("The possible magics of this world are: \n Fire \n Water \n Earth \n Air \n Lightning \n Shadow \n Healing \n Summoning \n Illusion");
-        
-        //TODO: allow for a number to be entered.
-        System.out.println("What is " + name + "'s primary magic? (enter number)");
-//      String tempFirst = sc.nextLine();
-//      while((tempFirst.equals("Fire") || tempFirst.equals("Water") || tempFirst.equals("Earth") || tempFirst.equals("Air") || tempFirst.equals("Lightning") || tempFirst.equals("Shadow") || tempFirst.equals("Healing") || tempFirst.equals("Summoning") || tempFirst.equals("Illusion")) == false){
-        int answer = sc.nextInt();
-        while (answer < 1 || answer > tempArray.size()) {
+        System.out.println("The possible magics of this world are: \n Fire \n Water \n Earth \n Air \n Lightning \n Shadow \n Healing \n Summoning \n Illusion");
+        System.out.println("What is " + name + "'s primary magic?");
+        String tempFirst = sc.nextLine();
+        while((tempFirst.equals("Fire") || tempFirst.equals("Water") || tempFirst.equals("Earth") || tempFirst.equals("Air") || tempFirst.equals("Lightning") || tempFirst.equals("Shadow") || tempFirst.equals("Healing") || tempFirst.equals("Summoning") || tempFirst.equals("Illusion")) == false){
             System.out.println("That is not one of the possible magics");
             System.out.println("Please pick a magic.");
-            //tempFirst = sc.nextLine();
-            answer = sc.nextInt();
+            tempFirst = sc.nextLine();
         }
-        //primaryMagic = new Magic(filereader.firstMagicReader(tempFirst));
-        String magicType = tempArray.get(answer-1);
-        magicType = magicType.substring(0, magicType.indexOf(','));
-        primaryMagic = new Magic(filereader.firstMagicReader(magicType));
-        
-        
+        primaryMagic = new Magic(filereader.firstMagicReader(tempFirst));
         System.out.println("What is " + name + "'s secondary magic?");
-        
         String tempSecond = sc.nextLine();
-        while(((tempSecond.equals("Fire") || tempSecond.equals("Water") || tempSecond.equals("Earth") || tempSecond.equals("Air") || tempSecond.equals("Lightning") || tempSecond.equals("Shadow") || tempSecond.equals("Healing") || tempSecond.equals("Summoning") || tempSecond.equals("Illusion")) && tempSecond.equals(magicType) == false) == false){
+        while(((tempSecond.equals("Fire") || tempSecond.equals("Water") || tempSecond.equals("Earth") || tempSecond.equals("Air") || tempSecond.equals("Lightning") || tempSecond.equals("Shadow") || tempSecond.equals("Healing") || tempSecond.equals("Summoning") || tempSecond.equals("Illusion")) && tempSecond.equals(tempFirst) == false) == false){
             System.out.println("That is not a possible secondary magic");
             System.out.println("Please pick a magic.");
             tempSecond = sc.nextLine();

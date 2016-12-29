@@ -1,5 +1,3 @@
-package rpg;
-
 public class WeaponStyle{
     private String style;
     private int offense;
