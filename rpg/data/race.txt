@@ -1,10 +1,26 @@
+#Race information file
+#Data structure: each race takes up two lines as follows,
+#  Name, primaryBuff, secondaryBuff, tertianryBuff, primaryDeBuff, secondaryDeBuff
+#  Possible values for these attributes are: Strength, Dexterity, Agility, Endurance, Intelligence, Wisdom, Perception, Luck, Charisma, Vitality
+#Name: text string to be printed about this race. New lines are '@' (since \n does not work)
+#
 Gox,Vitality,Intelligence,Endurance,Agility,Dexterity
+Gox: A race of turtle-like peoples.  They can be found living in @small rural communities along the southern coast lines.  However, many tend @to move away to the cities in order to pursue research at universities.  @They can also be found wandering the wilds in search of ruins to explore.  @hey are long lived, but not very agile.
 Valdar,Strength,Dexterity,Vitality,Charisma,Intelligence
+Valdar: A race of horned, mammalian people.  They are extremely powerful and @large in stature. They mostly live in large clans in the southern plains and @in the shadows of the volcanos in that region.  Their clans are always at war @as combat prowess is viewed with respect in their society.
 Eona,Intelligence,Charisma,Perception,Luck,Strength
+Eona: A race of refined human-like people.  Their hair is often brightly colored.  @They are mostly city dwelling people who are intelligent and charismatic. Many @are merchants or scholars.  They hate to leave things to luck.
 Kroll,Agility,Endurance,Wisdom,Vitality,Charisma
+Kroll: A race of nomadic cat-like people.  They can be found throughout the world @as they travel.@They have a few permanent settlements in the forests of the world.  @They are not always trusted by others.  They are also very agile.
 Surmeli,Luck,Agility,Dexterity,Strength,Vitality
+Surmeli: A humanoid race of small stature.  They are quick, but weak.  They are @known for somehow getting out of tough situations.  They have villages in forests @and the hillier regions of the world.
 Zem,Dexterity,Wisdom,Strength,Perception,Luck
+Zem: A race of lizard-like people who mainly dwell in the mountains. They @are a warrior race who looks to the gods for wisdom.  Many become mercenaries @for foreign armies.
 Criffon,Wisdom,Perception,Agility,Intelligence,Endurance
+Criffon: A race of barbaric humanoids who dwell on the plains of the world.  @They often shirk modern education for the wisdom of their gods. They live in @small hunter-gatherer villages.
 Eldrizi,Endurance,Vitality,Charisma,Dexterity,Perception
+Eldrizi: A race of large humanoids from the north.  They have incredible endurance. @They mostly live in cities in order to guard from the elements.
 Elassi,Charisma,Luck,Intelligence,Endurance,Wisdom
+Elassi: They are an elven race who often are found in cities of other races. @They are great merchants.  They have founded cities along the trade routes of the world.
 Clovis,Perception,Luck,Strength,Wisdom,Agility
+Clovis: A race of humans who have developed extraordinary perception in response @to the harsh desert wilderness.  They live in walled cities for protection.

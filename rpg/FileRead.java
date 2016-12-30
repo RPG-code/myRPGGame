@@ -4,16 +4,25 @@ import java.io.*;
 import java.util.ArrayList;
 
 class FileRead{
+	
+	/* Instead of storing the information as Buffered readers, and then reading the data later on, 
+	 * We're going to read all of the data right away and store it in ArrayLists
+	 */
+	
 	private BufferedReader raceRead;
-	private BufferedReader firstMagicRead;
-	private BufferedReader secondMagicRead;
+//	private BufferedReader magicRead;
 	private BufferedReader storyRead;
 	private BufferedReader styleRead;
 	private BufferedReader roomRead;
 	private BufferedReader areaRead;
 
 	private ArrayList<String> magicData = new ArrayList<String>(); //store all of the magic data here
-
+	private ArrayList<String> raceData = new ArrayList<String>();
+	private ArrayList<String> storyData = new ArrayList<String>();
+	private ArrayList<String> styleData = new ArrayList<String>();
+	private ArrayList<String> roomData = new ArrayList<String>();
+	private ArrayList<String> areaData = new ArrayList<String>();
+	
 	/* Location of data files:
 	   The data files are in a subdirectory called "data", one level below where the source code is.
 	   Thus, theoretically one could just use the path "./data".
@@ -26,30 +35,102 @@ class FileRead{
 
 	FileRead(){    	
 		raceRead = readme("race.txt");
-		firstMagicRead = readme("magic.txt");
-		secondMagicRead = readme("magic.txt");
+		//magicRead = readme("magic.txt");
 		storyRead = readme("story.txt");
 		styleRead = readme("weaponstyle.txt");
 		roomRead = readme("rooms.txt");
 		areaRead = readme("areas.txt");
 
 		//store data in an arraylist of Strings
-		try {
-			String text = null;
-			while ((text = firstMagicRead.readLine()) != null){
-				magicData.add(text);  
-			}
-//			firstMagicRead.close();  DO NOT CLOSE IT. It will be used again below.
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
+		magicData = readData("magic.txt");
+		
+		readRaceData("race.txt");
+		
+		
 	}
 
 	ArrayList<String> getMagicData() {
 		return magicData;
 	}
 
-
+	
+	ArrayList<String> readData(String fname) {
+		BufferedReader br = null;
+		ArrayList<String> dataArray = new ArrayList<String>();
+		
+		try{
+			br = new BufferedReader(new FileReader(new File(path + fname)));
+		}
+		catch (FileNotFoundException fnfe)
+		{
+			System.out.println(path + fname + " file not found");
+			System.exit(0);
+		}
+		
+		try {
+			String text = null;
+			while ((text = br.readLine()) != null){
+				if (text.charAt(0) == ';' || text.charAt(0) == '#') continue;				
+				dataArray.add(text);  
+			}
+			br.close();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			System.exit(0);
+		}
+		return dataArray;
+	}
+	
+	//special case for reaading Race data due to unusual data format
+	void readRaceData(String fname) {
+		//open file
+		BufferedReader br = null;
+		try{
+			br = new BufferedReader(new FileReader(new File(path + fname)));
+		}
+		catch (FileNotFoundException fnfe)
+		{
+			System.out.println(path + fname + " file not found");
+			System.exit(0);
+		}
+		
+		//read line and create race object
+		try {
+			String text = null;
+			while ((text = br.readLine()) != null){
+				if (text.charAt(0) == ';' || text.charAt(0) == '#') continue;				
+				
+				String[] tokenize = text.split(",");
+				String raceName = tokenize[0];
+				//check for correct format. The first line should not have :
+				if (raceName.contains(":")) {
+					System.out.println("Error in race.txt file format!");
+					System.exit(0);
+				}
+				Race r = new Race(tokenize);
+				
+				//now read second line, the description.
+				text = br.readLine();
+				if (text == null ){	//no description
+					Race.raceList.add(r);
+					continue;
+				}
+				char colon = text.charAt(raceName.length());
+				if (colon == ':') {
+					r.setDesc(text);
+				}
+				Race.raceList.add(r);				
+			}
+			
+			br.close();
+			
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			System.exit(0);
+		}
+	}
+	
+	
 	BufferedReader readme(String fname) {
 		BufferedReader br = null;
 		try{
@@ -119,69 +200,16 @@ class FileRead{
 		}
 	}
 
-	public String[] firstMagicReader(String magic){
-		try{
-			String fileRead = firstMagicRead.readLine();
-			// loop until all lines are read
-			while (fileRead != null){
-				// use string.split to load a string array with the values from each line of
-				// the file, using a comma as the delimiter
-				String[] tokenize = fileRead.split(",");
-				// assume file is made correctly
-				String tempMagic = tokenize[0];
-				if(tempMagic.equals(magic)){
-					firstMagicRead.close();
-					return tokenize;
-				}
-				fileRead = firstMagicRead.readLine();
-			}
-			//No match: close file stream
-			System.out.println("ERROR: no magic called " + magic);
-			firstMagicRead.close();
-			return null;
-		}
-		catch (IOException ioe)
-		{
-			ioe.printStackTrace();
-			return null;
-		}
-	}
 
-	public String[] secondMagicReader(String magic){
-		try{
-			String fileRead = secondMagicRead.readLine();
-			// loop until all lines are read
-			while (fileRead != null){
-				// use string.split to load a string array with the values from each line of
-				// the file, using a comma as the delimiter
-				String[] tokenize = fileRead.split(",");
-				// assume file is made correctly
-				String tempMagic = tokenize[0];
-				if(tempMagic.equals(magic)){
-					secondMagicRead.close();
-					return tokenize;
-				}
-				fileRead = secondMagicRead.readLine();
-			}
-			// close file stream
-			secondMagicRead.close();
-			return null;
-		}
-		catch (IOException ioe)
-		{
-			ioe.printStackTrace();
-			return null;
-		}
-	}
 
 	public String[] styleReader(Weapon weapon1,Weapon weapon2){
-		//try{
-		//    styleRead = new BufferedReader(new FileReader("weaponstyle.txt"));
-		//}
-		//catch (FileNotFoundException fnfe)
-		//{
-		//   System.out.println("file not found");
-		//}
+		try{
+		    styleRead = new BufferedReader(new FileReader(path + "weaponstyle.txt"));
+		}
+		catch (FileNotFoundException fnfe)
+		{
+		   System.out.println("file not found");
+		}
 		try{
 			String style = null;
 			if(weapon1.getType().equals("Sword")){

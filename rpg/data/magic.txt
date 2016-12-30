@@ -1,4 +1,7 @@
-Fire,53,5,10,0,0,32
+#Magic data file.
+#Data format: Name, Offensive, Defensive, Mobility, Support, Control, Speed
+#NOTE: these are all double numbers, so write them with a .0
+Fire,53.0,5.0,10.0,0.0,0.0,32.0
 Water,37,25,0,0,13,25
 Earth,24,40,0,0,18,18
 Air,23,10,22,10,0,35

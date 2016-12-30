@@ -1,52 +1,60 @@
 package rpg;
 
+import java.util.ArrayList;
 
-/**
- * Write a description of class Race here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class Race
+class Race
 {
-    private String race;
-    private String primaryBuff;
-    private String secondaryBuff;
-    private String tertiaryBuff;
-    private String primaryDeBuff;
-    private String secondaryDeBuff;
-    
-    public Race(String[] species)
-    {
-        race = species[0];
-        primaryBuff = species[1];
-        secondaryBuff = species[2];
-        tertiaryBuff = species[3];
-        primaryDeBuff = species[4];
-        secondaryDeBuff = species[5];
-    }
+	//master list containing all of the races. Not Private
+	//this array list is loaded in FileRead.
+	static final ArrayList<Race> raceList = new ArrayList<Race>();
+	
+	private String race;
+	private String primaryBuff;
+	private String secondaryBuff;
+	private String tertiaryBuff;
+	private String primaryDeBuff;
+	private String secondaryDeBuff;
+	private String description;
 
-    public String getRace(){
-        return race;
-    }
+	Race(String[] species)
+	{
+		race = species[0];
+		primaryBuff = species[1];
+		secondaryBuff = species[2];
+		tertiaryBuff = species[3];
+		primaryDeBuff = species[4];
+		secondaryDeBuff = species[5];
+	}
+	
+	void setDesc(String text) {
+		description = text;
+	}
+	
+	String getDesc() {
+		return description;
+	}
 
-    public String getPrimaryBuff(){
-        return primaryBuff;
-    }
+	String getRace(){
+		return race;
+	}
 
-    public String getSecondaryBuff(){
-        return secondaryBuff;
-    }
+	String getPrimaryBuff(){
+		return primaryBuff;
+	}
 
-    public String getTertiaryBuff(){
-        return tertiaryBuff;
-    }
+	String getSecondaryBuff(){
+		return secondaryBuff;
+	}
 
-    public String getPrimaryDeBuff(){
-        return primaryDeBuff;
-    }
+	String getTertiaryBuff(){
+		return tertiaryBuff;
+	}
 
-    public String getSecondaryDeBuff(){
-        return secondaryDeBuff;
-    }
+	String getPrimaryDeBuff(){
+		return primaryDeBuff;
+	}
+
+	String getSecondaryDeBuff(){
+		return secondaryDeBuff;
+	}
 }

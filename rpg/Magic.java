@@ -1,12 +1,6 @@
 package rpg;
 
 
-/**
- * Write a description of class Magic here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 class Magic
 {
     private String type;
