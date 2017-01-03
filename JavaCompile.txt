@@ -1,11 +1,13 @@
+# These are just notes for me (Salamander2) on how to compile Java projects from the command line.
+
 # go to folder /programming/RPG_shadowMole
 
 # here is the directory tree
 RPG_shadowmole
  |-bin
- |---rpg
- |-rpg
- `---data
+ |---rpg   <--- compiled code goes here (class files). But this is only on my system. Each IDE can put it wherever.
+ |-rpg     <--- source code is here (java files)
+ `---data  <--- data is here (.txt files)
 
 > dir
 bin
