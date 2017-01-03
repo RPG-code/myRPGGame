@@ -104,9 +104,11 @@ class Character
 	private Scanner sc = new Scanner(System.in);
 
 	Character(){
+		//Make this static. It does not need to change for each character object.
 		filereader = new FileRead();
+//		FileRead.readAllData();
 
-		System.out.println("What is the name of this character?");
+		System.out.println("\n\nWhat is the name of this character?");
 		name = sc.nextLine();		
 		
 		setRace();
@@ -121,20 +123,141 @@ class Character
 		}
 		story = new Background(filereader.storyReader(tempStory));
 
-		int primary = setPrimaryMagic();
-		setSecondaryMagic(primary);
-
-//		System.out.println("What is " + name + "'s secondary magic?");
-//		String tempSecond = sc.nextLine();
-//		while(((tempSecond.equals("Fire") || tempSecond.equals("Water") || tempSecond.equals("Earth") || tempSecond.equals("Air") || tempSecond.equals("Lightning") || tempSecond.equals("Shadow") || tempSecond.equals("Healing") || tempSecond.equals("Summoning") || tempSecond.equals("Illusion")) && tempSecond.equals(primaryMagic.getType()) == false) == false){
-//			System.out.println("That is not a possible secondary magic");
-//			System.out.println("Please pick a magic.");
-//			tempSecond = sc.nextLine();
-//		}
-//		secondaryMagic = new Magic(filereader.secondMagicReader(tempSecond));
-		
+		int primaryNum = setPrimaryMagic();
+		setSecondaryMagic(primaryNum);
+	
 		magic = new Magic(primaryMagic, secondaryMagic);
 
+		modStats();
+
+		level = 1;
+		
+		selectAttributes();
+		
+				
+		chest = story.getChest();
+		head = story.getHead();
+		legs = story.getLegs();
+		arms = story.getArms();
+		feet = story.getFeet();
+		hand1 = story.getWeapon1();
+		hand2 = story.getWeapon2();
+
+		totalHealth = (getVitality() * 50) + (getStrength() * 10);
+		totalStamina = (getEndurance() * 50) + (getAgility() * 10);
+		totalMana = (getIntelligence() * 50) + (getWisdom() * 10);
+		health = totalHealth;
+		stamina = totalStamina;
+		mana = totalMana;
+		healthRegen = (getStrength() * 8) + (getVitality() * 4);
+		staminaRegen = (getAgility() * 8) + (getEndurance() * 4);
+		manaRegen = (getWisdom() * 8) + (getIntelligence() * 4);
+		getStyle();
+		getWeaponDamage();
+		getArmor();
+		getMoveSpeed();
+		getWeaponSpeed();
+		getBlockDefense();
+		getDodgeChance();
+		getParryChance();
+		getCritChance();
+		getInfluence();
+		getMagicPower();
+		getCastSpeed();
+		getMagicDefense();
+		getMagicControl();
+		getMagicSupport();
+		getMagicMobility();
+	}
+
+	/* This method returns the number chosen for the primary magic. 
+	 * This is then used in the secondary magic to make sure that 
+	 * the player cannot choose the same magic twice.
+	 */
+	private int setPrimaryMagic() {
+		ArrayList<String> dataArray = filereader.getMagicData();
+		System.out.println("\nThe possible magics of this world are:");
+		for (int i=0; i < dataArray.size(); i++) {
+			String s = dataArray.get(i);
+			System.out.println((i+1) + ". " + s.substring(0, s.indexOf(',')) );
+		}
+		System.out.println("What is " + name + "'s PRIMARY magic? (enter number)");
+
+		int answer = sc.nextInt();  //FIXME: what if a non-integer is entered?
+
+		while (answer < 1 || answer > dataArray.size()) {
+			System.out.println("That is not one of the possible magics");
+			System.out.println("Please pick a magic.");
+			answer = sc.nextInt();
+		}
+		String magicData = dataArray.get(answer-1);
+		primaryMagic = new Magic(magicData.split(","));
+		sc.nextLine();
+		return answer-1;
+	}
+	
+	private void setSecondaryMagic(int primary) {
+		ArrayList<String> dataArray = filereader.getMagicData();
+		System.out.println("\nThe possible magics of this world are:");
+		for (int i=0; i < dataArray.size(); i++) {
+			String s = dataArray.get(i);
+			if (i==primary) System.out.println("X. " + s.substring(0, s.indexOf(',')));
+			else System.out.println((i+1) + ". " + s.substring(0, s.indexOf(',')) );
+		}
+		System.out.println("What is " + name + "'s SECONDARY magic? (enter number)");
+
+		int answer = sc.nextInt();  //FIXME: what if a non-integer is entered?
+
+		while (answer < 1 || answer > dataArray.size() || answer == primary + 1) {
+			System.out.println("That is not one of the possible magics");
+			System.out.println("Please pick a magic.");
+			answer = sc.nextInt();
+		}
+		String magicData = dataArray.get(answer-1);
+		secondaryMagic = new Magic(magicData.split(","));
+		sc.nextLine();
+	}
+	
+	private void setRace() {
+		System.out.println("\nThe races of this world are: ");
+		
+		for (int i=0; i < Race.raceList.size(); i++) {
+			Race r = Race.raceList.get(i);
+			//Neither of these prints out the \n that is in the text as a new line. I've also tried %n and \r\n in the text.
+//			System.out.printf("%d.\t%s%n",i+1,r.getDesc());
+//			System.out.println(i+1 + ".\t" + r.getDesc());
+			String desc = r.getDesc();
+//			String[] lines = desc.split("\\n");	//this does not work either!!!
+			String[] lines = desc.split("@");
+			for (int j=0; j < lines.length; j++) {
+				if (j==0) System.out.println((i+1) + " " + lines[j]);
+				else System.out.println("\t" + lines[j]);
+			}
+			System.out.printf("\t+30%% %s, +20%% %s, +10%% %s, -20%% %s, -10%% %s %n%n",
+					r.getPrimaryBuff(), r.getSecondaryBuff(), r.getTertiaryBuff(), r.getPrimaryDeBuff(), r.getSecondaryDeBuff());
+
+//	output like this:
+//			 "Eldrizi: A race of large humanoids from the north.  They have incredible endurance.  "
+//				+ "\n They mostly live in cities in order to guard from the elements.  \n "
+//				+ "+30% Endurance, +20% Vitality, +10% Charisma, -20% Dexterity, -10% Perception \n \n "
+			
+		}
+		System.out.println("What is " + name + "'s race? (enter number)");
+		int answer = sc.nextInt();  //FIXME: what if a non-integer is entered?
+
+		while (answer < 1 || answer > Race.raceList.size()) {
+			System.out.println("That is not one of the possible races");
+			System.out.println("Please pick a race.");
+			answer = sc.nextInt();
+		}
+		this.race = Race.raceList.get(answer-1);
+		//DEBUG:
+		//System.out.println("You are race " + this.race.getRace());
+	}
+	
+
+	private void modStats() {
+		//for some reason, I can't think of any way to simplify this part.
 		modStr = 1;
 		if(race.getPrimaryBuff().equals("Strength")){
 			modStr += .3;
@@ -325,6 +448,8 @@ class Character
 		}else if(story.getPrimaryDeBuff().equals("Vitality")){
 			modVit -= .1;
 		}
+		
+		//how is this section used?
 		strength = 8;
 		dexterity = 8;
 		agility = 8;
@@ -335,6 +460,8 @@ class Character
 		luck = 8;
 		charisma = 8;
 		vitality = 8;
+		
+		//how is this section used?
 		moddedStr = strength * modStr;
 		moddedDex = dexterity * modDex;
 		moddedAgi = agility * modAgi;
@@ -346,164 +473,61 @@ class Character
 		moddedCha = charisma * modCha;
 		moddedVit = vitality * modVit;
 
-		level = 1;
-		System.out.println("The possible attributes are: \n Strength \n Dexterity \n Agility \n Endurance \n Intelligence \n Wisdom \n Perception \n Luck \n Charisma \n Vitality");
-		for(int i = 0; i < 20; i++){
-			System.out.println(name + " has " + (20 - i) + " attributes left to assign.");
-			System.out.println("Please select which attribute " + name + " wishes to increase.");
-			String attribute = sc.nextLine();
-			while((attribute.equals("Strength") || attribute.equals("Dexterity") || attribute.equals("Agility") || attribute.equals("Endurance") || attribute.equals("Intelligence") || attribute.equals("Wisdom") || attribute.equals("Perception") || attribute.equals("Charisma") || attribute.equals("Luck") || attribute.equals("Vitality")) == false){
+	}
+
+	private void selectAttributes() {
+		System.out.println("The possible attributes are: \n"
+				+ " Strength  Dexterity  Agility  Endurance  Intelligence \n"
+				+ " Wisdom  Perception  Luck  Charisma  Vitality\n");
+		
+		System.out.println("Please select which attribute " + name + " wishes to increase (just type the first letter)\n");
+	
+		int points = 20;
+		while (points > 0) {
+			System.out.println(name + " has " + points + " attributes left to assign.");
+			//Str:1  Dex:0  Agl:3  End:5  Int:4  Wis:3  Per:0  Cha:3  Lck:3  Vit:2
+			System.out.printf("Str:%d  Dex:%d  Agl:%d  End:%d  Int:%d  Wis:%d  Per:%d  Cha:%d  Lck:%d  Vit:%d %n",
+						strength, dexterity, agility, endurance, intelligence, wisdom, perception, charisma, luck, vitality);
+			String attribute = sc.nextLine().toUpperCase();
+			switch (attribute.charAt(0)) { // just switch on the first letter
+			case 'S':
+				strength++;
+				break;
+			case 'D':
+				dexterity++;
+				break;
+			case 'A':
+				agility++;
+				break;
+			case 'E':
+				endurance++;
+				break;
+			case 'I':
+				intelligence++;
+				break;
+			case 'W':
+				wisdom++;
+				break;
+			case 'P':
+				perception++;
+				break;
+			case 'C':
+				charisma++;
+				break;
+			case 'L':
+				luck++;
+				break;
+			case 'V':
+				vitality++;
+				break;
+			default:
 				System.out.println("That is not one of the attributes");
 				System.out.println("Please pick an attribute.");
-				attribute = sc.nextLine();
+				points++;
 			}
-			if(attribute.equals("Strength")){
-				strength++;
-			}
-			if(attribute.equals("Dexterity")){
-				dexterity++;
-			}
-			if(attribute.equals("Agility")){
-				agility++;
-			}
-			if(attribute.equals("Endurance")){
-				endurance++;
-			}
-			if(attribute.equals("Intelligence")){
-				intelligence++;
-			}
-			if(attribute.equals("Wisdom")){
-				wisdom++;
-			}
-			if(attribute.equals("Perception")){
-				perception++;
-			}
-			if(attribute.equals("Luck")){
-				luck++;
-			}
-			if(attribute.equals("Charisma")){
-				charisma++;
-			}
-			if(attribute.equals("Vitality")){
-				vitality++;
-			}
+			points--;	
 		}
-		chest = story.getChest();
-		head = story.getHead();
-		legs = story.getLegs();
-		arms = story.getArms();
-		feet = story.getFeet();
-		hand1 = story.getWeapon1();
-		hand2 = story.getWeapon2();
-
-		totalHealth = (getVitality() * 50) + (getStrength() * 10);
-		totalStamina = (getEndurance() * 50) + (getAgility() * 10);
-		totalMana = (getIntelligence() * 50) + (getWisdom() * 10);
-		health = totalHealth;
-		stamina = totalStamina;
-		mana = totalMana;
-		healthRegen = (getStrength() * 8) + (getVitality() * 4);
-		staminaRegen = (getAgility() * 8) + (getEndurance() * 4);
-		manaRegen = (getWisdom() * 8) + (getIntelligence() * 4);
-		getStyle();
-		getWeaponDamage();
-		getArmor();
-		getMoveSpeed();
-		getWeaponSpeed();
-		getBlockDefense();
-		getDodgeChance();
-		getParryChance();
-		getCritChance();
-		getInfluence();
-		getMagicPower();
-		getCastSpeed();
-		getMagicDefense();
-		getMagicControl();
-		getMagicSupport();
-		getMagicMobility();
 	}
-
-	private int setPrimaryMagic() {
-		ArrayList<String> dataArray = filereader.getMagicData();
-		System.out.println("\nThe possible magics of this world are:");
-		for (int i=0; i < dataArray.size(); i++) {
-			String s = dataArray.get(i);
-			System.out.println((i+1) + ". " + s.substring(0, s.indexOf(',')) );
-		}
-		System.out.println("What is " + name + "'s PRIMARY magic? (enter number)");
-
-		int answer = sc.nextInt();  //FIXME: what if a non-integer is entered?
-
-		while (answer < 1 || answer > dataArray.size()) {
-			System.out.println("That is not one of the possible magics");
-			System.out.println("Please pick a magic.");
-			answer = sc.nextInt();
-		}
-		String magicData = dataArray.get(answer-1);
-		primaryMagic = new Magic(magicData.split(","));
-		sc.nextLine();
-		return answer-1;
-	}
-	
-	private void setSecondaryMagic(int primary) {
-		ArrayList<String> dataArray = filereader.getMagicData();
-		System.out.println("\nThe possible magics of this world are:");
-		for (int i=0; i < dataArray.size(); i++) {
-			String s = dataArray.get(i);
-			if (i==primary) System.out.println("X. " + s.substring(0, s.indexOf(',')));
-			else System.out.println((i+1) + ". " + s.substring(0, s.indexOf(',')) );
-		}
-		System.out.println("What is " + name + "'s SECONDARY magic? (enter number)");
-
-		int answer = sc.nextInt();  //FIXME: what if a non-integer is entered?
-
-		while (answer < 1 || answer > dataArray.size() || answer == primary + 1) {
-			System.out.println("That is not one of the possible magics");
-			System.out.println("Please pick a magic.");
-			answer = sc.nextInt();
-		}
-		String magicData = dataArray.get(answer-1);
-		secondaryMagic = new Magic(magicData.split(","));
-		sc.nextLine();
-	}
-	
-	private void setRace() {
-		System.out.println("\nThe races of this world are: ");
-		
-		for (int i=0; i < Race.raceList.size(); i++) {
-			Race r = Race.raceList.get(i);
-			//Neither of these prints out the \n that is in the text as a new line. I've also tried %n and \r\n in the text.
-//			System.out.printf("%d.\t%s%n",i+1,r.getDesc());
-//			System.out.println(i+1 + ".\t" + r.getDesc());
-			String desc = r.getDesc();
-//			String[] lines = desc.split("\\n");	//this does not work either!!!
-			String[] lines = desc.split("@");
-			for (int j=0; j < lines.length; j++) {
-				if (j==0) System.out.println((i+1) + " " + lines[j]);
-				else System.out.println("\t" + lines[j]);
-			}
-			System.out.printf("\t+30%% %s, +20%% %s, +10%% %s, -20%% %s, -10%% %s %n%n",
-					r.getPrimaryBuff(), r.getSecondaryBuff(), r.getTertiaryBuff(), r.getPrimaryDeBuff(), r.getSecondaryDeBuff());
-
-//	output like this:
-//			 "Eldrizi: A race of large humanoids from the north.  They have incredible endurance.  "
-//				+ "\n They mostly live in cities in order to guard from the elements.  \n "
-//				+ "+30% Endurance, +20% Vitality, +10% Charisma, -20% Dexterity, -10% Perception \n \n "
-			
-		}
-		System.out.println("What is " + name + "'s race? (enter number)");
-		int answer = sc.nextInt();  //FIXME: what if a non-integer is entered?
-
-		while (answer < 1 || answer > Race.raceList.size()) {
-			System.out.println("That is not one of the possible races");
-			System.out.println("Please pick a race.");
-			answer = sc.nextInt();
-		}
-		this.race = Race.raceList.get(answer-1);
-		//DEBUG:
-		//System.out.println("You are race " + this.race.getRace());
-	}
-	
 
 	String getName(){
 		return name;
